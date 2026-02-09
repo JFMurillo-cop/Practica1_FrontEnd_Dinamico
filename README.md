@@ -214,7 +214,6 @@ Ejecuta esta función en la consola para ver estadísticas generales.
 Desarrollado como parte de la práctica de **Estructuras de Datos y Algoritmos I**
 
 **Universidad Autónoma de Occidente**  
-Facultad de Ingeniería - Núcleo MIDIA
 
 ---
 
