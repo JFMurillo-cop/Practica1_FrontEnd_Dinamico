@@ -208,16 +208,6 @@ Ejecuta esta función en la consola para ver estadísticas generales.
 
 ---
 
-## 🔜 Mejoras Futuras
-
-- [ ] Persistencia de datos (LocalStorage)
-- [ ] Exportar reportes a PDF
-- [ ] Gráficos de amortización
-- [ ] Comparador de préstamos
-- [ ] Modo oscuro/claro
-- [ ] Calculadora de ahorro
-
----
 
 ## 👨‍💻 Autor
 
