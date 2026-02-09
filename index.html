@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Cuota Mensual</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-decoration"></div>
+            <h1 class="title">Calculadora de Cuota Mensual</h1>
+            <p class="subtitle">Simula tu préstamo y conoce tu cuota mensual</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Formulario de Cálculo -->
+            <section class="calculator-section">
+                <div class="form-card">
+                    <h2 class="section-title">Datos del Préstamo</h2>
+                    
+                    <div class="form-group">
+                        <label for="nombre">Nombre del Solicitante</label>
+                        <input type="text" id="nombre" placeholder="Ingresa tu nombre completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prestamo">Monto del Préstamo ($)</label>
+                        <input type="number" id="prestamo" placeholder="5000000" min="0" step="100000">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="meses">Número de Meses</label>
+                            <input type="number" id="meses" placeholder="12" min="1" max="360">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interes">Interés (decimal)</label>
+                            <input type="number" id="interes" placeholder="0.15" min="0" max="1" step="0.01">
+                            <small>Ejemplo: 0.15 = 15%</small>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="calcularCuota()">
+                        <span>Calcular Cuota</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Área de Resultado -->
+                <div class="result-card">
+                    <h3 class="result-title">Resultado</h3>
+                    <textarea id="resultado" readonly placeholder="Los resultados aparecerán aquí..."></textarea>
+                </div>
+            </section>
+
+            <!-- Sección de Reportes -->
+            <section class="reports-section">
+                <h2 class="section-title">Gestión de Préstamos</h2>
+                
+                <div class="button-grid">
+                    <button class="btn btn-secondary" onclick="mostrarTodos()">
+                        <span>Ver Todos los Préstamos</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="sumatoriaCuotas()">
+                        <span>Sumatoria de Cuotas</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="cuotasMayores300k()">
+                        <span>Cuotas > $300,000</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="prestamosMenosUnAnio()">
+                        <span>Préstamos < 1 Año</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="primerPrestamoMayor5M()">
+                        <span>Préstamo > $5,000,000</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="primerInteresMenor2()">
+                        <span>Interés < 2%</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="incrementarCuotas()">
+                        <span>Incrementar Cuotas +$90,000</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="decrementarPrestamos()">
+                        <span>Decrementar Préstamos -$90,000</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="obtenerSoloCuotas()">
+                        <span>Ver Solo Cuotas</span>
+                    </button>
+                    <button class="btn btn-danger" onclick="limpiarDatos()">
+                        <span>Limpiar Todo</span>
+                    </button>
+                </div>
+
+                <!-- Área de Reportes -->
+                <div class="report-output">
+                    <h3 class="result-title">Reporte</h3>
+                    <textarea id="reporte" readonly placeholder="Los reportes aparecerán aquí..."></textarea>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Universidad Autónoma de Occidente - Estructuras de Datos y Algoritmos I</p>
+            <p class="footer-detail">Práctica 1: Desarrollo FrontEnd Dinámico</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
