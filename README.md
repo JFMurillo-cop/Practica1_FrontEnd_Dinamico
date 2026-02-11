@@ -3,8 +3,8 @@
 Proyecto desarrollado para la práctica de **Desarrollo FrontEnd Dinámico** - Estructuras de Datos y Algoritmos I
 
 **Universidad Autónoma de Occidente**  
-Profesor: Orlando Arboleda Molina
-
+Profesor: JOHN ALEXANDER VARGAS
+Estudiantes: Juan Felipe Murillo Y Nicolás García
 ---
 
 ## 📋 Descripción
