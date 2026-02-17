@@ -535,7 +535,7 @@ npm cache clean --force
 
 ## 👨‍💻 Autores
 
-Juan Felipe Murillo Y Nicolás García
+Juan Felipe Murillo y Nicolás García
 
 **Universidad Autónoma de Occidente**  
 Desarrollo FrontEnd Dinámico - Estructuras de Datos y Algoritmos I
