@@ -2,17 +2,16 @@
 let prestamos = [];
 
 /**
- * Calcula la cuota mensual de un préstamo
- * Fórmula: Cuota = (Préstamo * i) / (1 - (1 + i)^(-n))
+ * Calcula la cuota mensual de un préstamo usando el backend
  */
-function calcularCuota() {
+async function calcularCuota() {
     // Obtener valores del formulario
     const nombre = document.getElementById('nombre').value.trim();
     const prestamo = parseFloat(document.getElementById('prestamo').value);
     const meses = parseInt(document.getElementById('meses').value);
     const interes = parseFloat(document.getElementById('interes').value);
     
-    // Validaciones
+    // Validaciones básicas en el cliente
     if (!nombre) {
         mostrarResultado('Por favor, ingresa tu nombre.');
         return;
@@ -32,42 +31,54 @@ function calcularCuota() {
         mostrarResultado('Por favor, ingresa un interés válido.');
         return;
     }
-    
-    // Calcular cuota mensual usando la fórmula
-    let cuota;
-    if (interes === 0) {
-        // Si el interés es 0, la cuota es simplemente el préstamo dividido por los meses
-        cuota = prestamo / meses;
-    } else {
-        // Fórmula: Cuota = (Préstamo * i) / (1 - (1 + i)^(-n))
-        const numerador = prestamo * interes;
-        const denominador = 1 - Math.pow(1 + interes, -meses);
-        cuota = numerador / denominador;
+
+    try {
+        // Enviar datos al backend
+        const response = await fetch('/api/calcular-cuota', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre: nombre,
+                prestamo: prestamo,
+                meses: meses,
+                interes: interes
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            // El cálculo se hizo en el backend
+            const cuota = data.datos.cuota;
+            
+            // Crear objeto de préstamo para el frontend
+            const objetoPrestamo = {
+                nombre: nombre,
+                prestamo: prestamo,
+                meses: meses,
+                interes: interes,
+                cuota: cuota
+            };
+            
+            // Agregar al arreglo local
+            prestamos.push(objetoPrestamo);
+            
+            // Mostrar el resultado del backend
+            mostrarResultado(data.resultado);
+            console.log('✓ Préstamo calculado en el backend:', data.datos);
+            
+            // Limpiar formulario
+            limpiarFormulario();
+        } else {
+            mostrarResultado('Error: ' + data.error);
+        }
+
+    } catch (error) {
+        console.error('Error al comunicarse con el backend:', error);
+        mostrarResultado('Error al comunicarse con el servidor. ¿Está corriendo el backend?');
     }
-    
-    // Crear objeto de préstamo
-    const objetoPrestamo = {
-        nombre: nombre,
-        prestamo: prestamo,
-        meses: meses,
-        interes: interes,
-        cuota: cuota
-    };
-    
-    // Agregar al arreglo
-    prestamos.push(objetoPrestamo);
-    
-    // Formatear el resultado
-    const interesPorc = (interes * 100).toFixed(2);
-    const resultado = `${nombre} debe pagar $${formatearNumero(cuota)} cada mes por el préstamo de $${formatearNumero(prestamo)} a ${meses} meses con el interés del ${interesPorc}%`;
-    
-    mostrarResultado(resultado);
-    
-    // Limpiar formulario
-    limpiarFormulario();
-    
-    // Mensaje de éxito
-    console.log('✓ Préstamo agregado correctamente', objetoPrestamo);
 }
 
 /**
